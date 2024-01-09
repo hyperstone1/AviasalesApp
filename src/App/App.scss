@@ -1,0 +1,26 @@
+.aviasales {
+	padding: 10rem 0;
+	&__inner {
+		display: flex;
+		flex-direction: column;
+		gap: 10rem;
+	}
+}
+
+.main {
+	display: flex;
+	justify-content: space-between;
+	gap: 4rem;
+}
+
+@media (max-width: 48em) {
+	.aviasales {
+		padding: 5rem 0;
+		&__inner {
+			gap: 5rem;
+		}
+	}
+	.main {
+		flex-direction: column;
+	}
+}

@@ -1,0 +1,56 @@
+.navigation {
+	&__inner {
+		display: flex;
+		height: 10rem;
+		background-color: $white;
+		border-radius: 1rem;
+
+		box-shadow: 0 0.4rem 1.6rem 0 rgba(0, 0, 0, 0.1);
+		overflow: hidden;
+	}
+	&__btn {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		transition: background 0.2s linear;
+		font-size: 2.4rem;
+		font-weight: 600;
+		line-height: 4rem; /* 166.667% */
+		letter-spacing: 0.1rem;
+		text-transform: uppercase;
+		&:not(:last-child) {
+			border-right: 0.2rem solid #dfe5ec;
+		}
+
+		&.active {
+			background-color: $blue;
+			color: $white;
+			&:hover {
+				background-color: $blue;
+			}
+		}
+
+		&:hover {
+			background-color: #f1fcff;
+			transition: background 0.2s linear;
+		}
+	}
+}
+
+@media (max-width: 48em) {
+	.navigation {
+		&__inner {
+			border-radius: 2rem;
+		}
+		&__btn {
+			font-size: 1.6rem;
+
+			&:hover {
+				background: none;
+				transition: none;
+			}
+		}
+	}
+}
