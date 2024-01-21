@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchTickets } from './asyncActions';
+import { fetchTickets, fetchTicketsRender } from './asyncActions';
 import { Status } from './types';
 
 const initialState = {
@@ -17,9 +17,13 @@ const ticketsSlice = createSlice({
 		},
 	},
 	extraReducers: builder => {
+		// fetch all tickets
 		builder.addCase(fetchTickets.pending, state => {
 			state.status = Status.LOADING;
 			state.items = [];
+			// if(state.items <= 500){
+			// 	state.items
+			// }
 		});
 		builder.addCase(fetchTickets.fulfilled, (state, action) => {
 			state.items = action.payload;
@@ -27,6 +31,23 @@ const ticketsSlice = createSlice({
 		});
 
 		builder.addCase(fetchTickets.rejected, state => {
+			state.status = Status.ERROR;
+			state.items = [];
+		});
+
+		//Fetch first 500 tickets
+
+		builder.addCase(fetchTicketsRender.pending, state => {
+			state.status = Status.LOADING;
+			state.items = [];
+		});
+
+		builder.addCase(fetchTicketsRender.fulfilled, (state, action) => {
+			state.items = action.payload;
+			state.status = Status.SUCCESS;
+		});
+
+		builder.addCase(fetchTicketsRender.rejected, state => {
 			state.status = Status.ERROR;
 			state.items = [];
 		});

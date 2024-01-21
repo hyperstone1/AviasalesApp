@@ -1,16 +1,20 @@
+import { useDispatch } from 'react-redux';
+
+import { filterCheckboxes } from '../utils/constants';
+import { setFilter } from '../store/slices/filterSlice/filterSlice';
+
 import FiltersLabel from './FiltersLabel';
 
 const Filters = () => {
+	const dispatch = useDispatch();
 	return (
 		<aside className='filters'>
 			<form className='filters__form'>
 				<div className='filters__title'>Количество пересадок</div>
 				<div className='filters__content'>
-					<FiltersLabel>Все</FiltersLabel>
-					<FiltersLabel>Без пересадок</FiltersLabel>
-					<FiltersLabel>1 пересадка</FiltersLabel>
-					<FiltersLabel>2 пересадка</FiltersLabel>
-					<FiltersLabel>3 пересадка</FiltersLabel>
+					{filterCheckboxes.map((checkbox, id) => (
+						<FiltersLabel key={`${id}-${checkbox.name}_${checkbox.id}`} handleChange={() => dispatch(setFilter({ id: checkbox.id }))} {...checkbox} />
+					))}
 				</div>
 			</form>
 		</aside>

@@ -6,7 +6,6 @@ const Content = () => {
 		<section className='content'>
 			<Navigation />
 			<TicketList />
-			<button className='more'>Показать еще 5 билетов!</button>
 		</section>
 	);
 };

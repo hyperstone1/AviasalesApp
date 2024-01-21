@@ -1,17 +1,20 @@
+import { useDispatch } from 'react-redux';
+
+import { sortButtons } from '../utils/constants';
+import { setSort } from '../store/slices/filterSlice/filterSlice';
+
+import NavigationBtn from './NavigationBtn';
+
 const Navigation = () => {
+	const dispatch = useDispatch();
+
 	return (
 		<div className='navigation'>
-			<div className='navigation__inner'>
-				<button className='navigation__btn active' type='button'>
-					Самый дешевый
-				</button>
-				<button className='navigation__btn' type='button'>
-					Самый быстрый
-				</button>
-				<button className='navigation__btn' type='button'>
-					Оптимальный
-				</button>
-			</div>
+			<nav className='navigation__inner'>
+				{sortButtons.map(btn => (
+					<NavigationBtn key={btn.sort} {...btn} onClick={() => dispatch(setSort(btn.sort))} />
+				))}
+			</nav>
 		</div>
 	);
 };
